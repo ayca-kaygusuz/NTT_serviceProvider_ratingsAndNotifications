@@ -1,6 +1,6 @@
-namespace RatingService.controllers;
-
 using Microsoft.AspNetCore.Mvc;
+
+namespace RatingService;
 
 [ApiController]
 [Route("api/[controller]")]

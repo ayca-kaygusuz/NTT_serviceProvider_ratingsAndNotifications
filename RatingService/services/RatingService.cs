@@ -1,7 +1,7 @@
-namespace RatingService.services;
-
 using System.Collections.Generic;
 using System.Linq;
+
+namespace RatingService;
 
 public class RatingService
 {

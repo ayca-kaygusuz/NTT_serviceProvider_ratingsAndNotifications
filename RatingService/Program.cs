@@ -1,7 +1,7 @@
-namespace RatingService;
-
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+
+namespace RatingService;
 
 public class Program
 {

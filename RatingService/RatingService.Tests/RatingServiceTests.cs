@@ -1,6 +1,6 @@
-namespace RatingService.RatingService.Tests;
-
 using Xunit;
+
+namespace RatingService;
 
 public class RatingServiceTests
 {

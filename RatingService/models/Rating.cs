@@ -1,4 +1,4 @@
-namespace RatingService.models;
+namespace RatingService;
 
 public class Rating
 {
