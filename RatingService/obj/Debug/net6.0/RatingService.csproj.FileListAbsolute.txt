@@ -1,0 +1,6 @@
+D:\Repositories\NTT_serviceProvider_ratingsAndNotifications\RatingService\obj\Debug\net6.0\RatingService.GeneratedMSBuildEditorConfig.editorconfig
+D:\Repositories\NTT_serviceProvider_ratingsAndNotifications\RatingService\obj\Debug\net6.0\RatingService.AssemblyInfoInputs.cache
+D:\Repositories\NTT_serviceProvider_ratingsAndNotifications\RatingService\obj\Debug\net6.0\RatingService.AssemblyInfo.cs
+D:\Repositories\NTT_serviceProvider_ratingsAndNotifications\RatingService\obj\Debug\net6.0\RatingService.csproj.CoreCompileInputs.cache
+D:\Repositories\NTT_serviceProvider_ratingsAndNotifications\RatingService\obj\Debug\net6.0\RatingService.MvcApplicationPartsAssemblyInfo.cache
+D:\Repositories\NTT_serviceProvider_ratingsAndNotifications\RatingService\obj\Debug\net6.0\RatingService.sourcelink.json
