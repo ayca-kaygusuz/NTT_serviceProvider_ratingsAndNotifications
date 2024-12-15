@@ -1,4 +1,4 @@
-package com.example.notification;
+package com.notification;
 
 public class Notification {
     private final String message;
