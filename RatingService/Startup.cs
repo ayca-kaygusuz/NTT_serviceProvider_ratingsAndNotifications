@@ -1,7 +1,7 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-using AspNetCoreRateLimit;
+using Microsoft.AspNetCore.RateLimiting;
+using System.Threading.RateLimiting;
+using Serilog;
 
 namespace RatingService
 {
@@ -19,11 +19,16 @@ namespace RatingService
             services.AddControllers();
 
             // Configure rate limiting
-            services.AddOptions();
-            services.Configure<IpRateLimitingOptions>(Configuration.GetSection("IpRateLimiting"));
-            services.Configure<IpRateLimitingPolicies>(Configuration.GetSection("IpRateLimitingPolicies"));
-            services.AddInMemoryRateLimiting();
-            services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
+            services.AddRateLimiter(options =>
+            {
+                options.AddFixedWindowLimiter("Fixed", config =>
+                {
+                    config.PermitLimit = 50; // Allow up to 50 requests
+                    config.Window = TimeSpan.FromSeconds(10); // Time window duration
+                    config.QueueProcessingOrder = QueueProcessingOrder.OldestFirst; // Handle requests in order
+                    config.QueueLimit = 2; // Allow 2 requests in the queue
+                });
+            });
 
             // Add Serilog
             services.AddLogging(loggingBuilder =>
@@ -31,6 +36,7 @@ namespace RatingService
 
             services.AddSingleton<RatingService>();
 
+            // Add Swagger UI
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Rating Service", Version = "v1" });
@@ -39,8 +45,8 @@ namespace RatingService
 
         public void Configure(IApplicationBuilder app)
         {
-            app.UseIpRateLimiting();
             app.UseRouting();
+            app.UseRateLimiter();
             app.UseAuthorization();
             
             app.UseSwagger();

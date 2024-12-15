@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace RatingService;
 
@@ -8,11 +9,12 @@ namespace RatingService;
 public class RatingsController : ControllerBase
 {
     private readonly RatingService _ratingService;
-    private readonly ILogger<RatingsController> _logger;
+    private readonly ILogger<RatingsController>? _logger;
 
-    public RatingsController(RatingService ratingService)
+    public RatingsController(RatingService ratingService, ILogger<RatingsController> logger)
     {
         _ratingService = ratingService;
+        _logger = logger;
     }
 
     [HttpPost]

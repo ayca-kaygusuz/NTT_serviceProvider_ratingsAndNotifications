@@ -6,11 +6,11 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-COPY ["RatingService/RatingService.csproj", "RatingService/"]
-RUN dotnet restore "RatingService/RatingService.csproj"
+COPY ["RatingService.csproj", "./"]
+RUN dotnet restore
 
 COPY . .
-WORKDIR "/src/RatingService"
+WORKDIR "/src"
 RUN dotnet build "RatingService.csproj" -c Release -o /app/build
 
 FROM build AS publish
