@@ -108,6 +108,28 @@ The Rating Service is a .NET application for managing ratings and notifications.
     ```bash
     dotnet test
     ```
+
+## Docker
+Both services are containerized for easy deployment. To build and run the services using Docker, execute:
+```bash
+docker-compose up --build
+```
+
+## Logging
+Structured logging is implemented in both services:
+    - Notification Service: Uses SLF4J with Logback for logging.
+    - Rating Service: Uses Serilog for structured logging.
+
+## CI/CD Pipeline
+A CI/CD pipeline is defined using GitHub Actions. The pipeline automates the build and test process for both services:
+    - Continuous Integration: Builds and tests the applications on every push or pull request.
+    - To view the pipeline, check the .github/workflows/ci.yml file.
+
+## Maintainability, Reliability, and Scalability
+    - Maintainability: The project is structured using best practices, including separation of concerns and dependency injection.
+    - Reliability: Exception handling is implemented, and structured logging helps with monitoring.
+    - Scalability: The microservices architecture allows for easy scaling of individual services based on demand.
+
 ## LICENSE
 This project is licensed under the GPL-3.0 license. See the LICENSE file or tab for more details. 
 
