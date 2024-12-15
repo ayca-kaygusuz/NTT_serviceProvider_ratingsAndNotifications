@@ -5,11 +5,6 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
-    services:
-      notification-service:
-        image: your-notification-service-image
-        ports:
-          - 8080:8080
 
     steps:
       - name: Checkout code
@@ -23,12 +18,17 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore ./RatingService/RatingService.csproj
       
-      - name: Build
+      - name: Build Rating Service
         run: dotnet build --no-restore ./RatingService/RatingService.csproj
 
       - name: Test Rating Service
         run: dotnet test ./RatingService.Tests/RatingService.Tests.csproj
 
+      - name: Setup Java (Maven)
+        uses: actions/setup-java@v1
+        with:
+          java-version: '17'
+      
       - name: Build Notification Service
         run: mvn clean install -f ./NotificationService/pom.xml
 
