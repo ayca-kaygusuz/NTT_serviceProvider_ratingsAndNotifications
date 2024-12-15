@@ -1,0 +1,36 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      notification-service:
+        image: your-notification-service-image
+        ports:
+          - 8080:8080
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '8.0.x'
+      
+      - name: Restore dependencies
+        run: dotnet restore ./RatingService/RatingService.csproj
+      
+      - name: Build
+        run: dotnet build --no-restore ./RatingService/RatingService.csproj
+
+      - name: Test Rating Service
+        run: dotnet test ./RatingService.Tests/RatingService.Tests.csproj
+
+      - name: Build Notification Service
+        run: mvn clean install -f ./NotificationService/pom.xml
+
+      - name: Test Notification Service
+        run: mvn test -f ./NotificationService/pom.xml
